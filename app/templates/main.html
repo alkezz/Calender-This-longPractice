@@ -8,5 +8,51 @@
 </head>
 <body>
     <h1>Calender working</h1>
+    <form method="post" action="">
+      {{form.csrf_token}}
+      <p>
+        {{form.name.label}} : {{form.name}}
+      </p>
+      <p>
+        {{form.start_date.label}} : {{form.start_date}} {{form.start_time}}
+      </p>
+      <p>
+        {{form.end_date.label}} : {{form.end_date}} {{form.end_time}}
+        {% if form.end_date.errors %}
+          <ul class="errors">
+            {% for error in form.end_date.errors %}
+             <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </p>
+      <p>
+        {{form.description.label}} : {{form.description}}
+      </p>
+      <p>
+        {{form.private.label}} : {{form.private}}
+      </p>
+      <p>
+        {{form.submit()}}
+      </p>
+    </form>
+    <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Start</th>
+            <th>End</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
 </body>
 </html>
